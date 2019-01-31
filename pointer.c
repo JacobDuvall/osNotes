@@ -1,4 +1,16 @@
 #include <stdio.h>
+#include <string.h>
+
+struct book {
+	int id; //4 bytes
+	char name[15]; //15 bytes
+};
+
+struct card {
+	int id;
+
+};
+
 
 int main (int argc, char ** argv) {
 	
@@ -67,10 +79,32 @@ int main (int argc, char ** argv) {
 	printf("*p4 => %d \n", *p4);
 	++p4; //increment address;
 	printf("*p4 => %d \n", *p4);
+	--p4;
+	printf("*p4 => %d \n", *p4);
+	
 
 	for (int i = 0; i < 6; ++i) {
-	
+	//	printf("|array[i]: %d", array[i]);
+		printf("|array[i]: %d", *(p4+i));
 	}
+
+	printf("/n");
+
+	// library code
+	struct book library[3];
+	
+	//id 1235
+	//library[0] = new book 
+	library[0].id = 1235;
+	strcpy(library[0].name, "East of Eden");
+	printf("book[0]: %d\n", library[0].id);
+	printf("book[0]: %s\n", library[0].name);
+	printf("sizeof(struct book): %ld\n", sizeof(struct book));
+	printf("sizeof(id): %ld\n", sizeof(library[0].id));
+	printf("sizeof(name): %ld\n", sizeof(library[0].name));
+	
+	printf("sizeof(struct card): %ld\n", sizeof(struct card));
+
 
 	return 0;
 
