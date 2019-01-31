@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 struct book {
 	int id; //4 bytes
 	char name[15]; //15 bytes
 };
+typedef struct book book;
 
 struct card {
 	int id;
@@ -105,6 +107,16 @@ int main (int argc, char ** argv) {
 	
 	printf("sizeof(struct card): %ld\n", sizeof(struct card));
 
+	book * libptr;
+	libptr = (book*) malloc (5 *sizeof(book));
+
+	libptr[0].id = 5555;
+	struct card *members;
+	members = (struct card*) libptr;
+
+	printf("members[0].id: %d\n", members[0].id);
+
+	free(libptr); //should always free after using malloc
 
 	return 0;
 
